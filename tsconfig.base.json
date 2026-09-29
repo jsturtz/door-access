@@ -1,0 +1,20 @@
+/* Put all standards for TypeScript across all apps here */
+{
+  "compilerOptions": {
+    /* Baseline Standard & Strictness */
+    "target": "ES2023",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+
+    /* Code Cleanliness & Build Quality */
+    "removeComments": true,
+    "declaration": true,
+    "sourceMap": true,
+
+    /* Path Aliases & Module Resolution Baseline */
+    "resolvePackageJsonExports": true
+  }
+}

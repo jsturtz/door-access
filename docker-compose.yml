@@ -1,0 +1,30 @@
+services:
+  # postgres:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     POSTGRES_USER: dev
+  #     POSTGRES_PASSWORD: devpassword
+  #     POSTGRES_DB: app_dev
+  #   ports:
+  #     - '5432:5432'
+
+  api:
+    build:
+      context: .                           # Points to the monorepo ROOT
+      dockerfile: apps/api/Dockerfile      # Points to the API Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      # DATABASE_URL: postgres://dev:devpassword@postgres:5432/app_dev
+      PORT: 3000
+    # depends_on:
+    #   - postgres
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - api
