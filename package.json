@@ -1,5 +1,5 @@
 {
-  "name": "javascript-monorepo",
+  "name": "door-access",
   "private": true,
   "workspaces": [
     "apps/*"
