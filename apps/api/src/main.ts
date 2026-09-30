@@ -1,13 +1,12 @@
-import 'dotenv/config';
-import { ValidationPipe } from '@nestjs/common';
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js';
+import 'dotenv/config'
+import { ValidationPipe } from '@nestjs/common'
+import { HttpAdapterHost, NestFactory } from '@nestjs/core'
+import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js'
 
-import { AppModule } from './app.module.js';
+import { AppModule } from './app.module.js'
 
 async function bootstrap() {
-  
-  // NestFactory can be called with a type that specifes the middleware that handles http: 
+  // NestFactory can be called with a type that specifes the middleware that handles http:
   // const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // What this does is expose *platform specific* functionality to app
   // So in this case, it makes the Express api available to app
@@ -23,18 +22,18 @@ async function bootstrap() {
     // if two route patterns can match teh same request, e.g. /users/me and /users/:id
     // then this is a shadow and gives a warning
     routeConflictPolicy: { duplicate: 'error', shadow: 'warn' },
-  });
+  })
 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
     }),
-  );
+  )
 
   const { httpAdapter } = app.get(HttpAdapterHost)
   app.useGlobalFilters(new PrismaExceptionFilter(httpAdapter))
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000)
 }
-await bootstrap();
+await bootstrap()

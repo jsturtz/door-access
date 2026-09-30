@@ -1,6 +1,6 @@
 // Controllers are responsible for handling incoming requests and sending responses back to the client.
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service.js';
+import { Controller, Get } from '@nestjs/common'
+import { AppService } from './app.service.js'
 
 // Controller decorator is how we define a controller
 @Controller()
@@ -9,7 +9,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.getHello()
   }
   @Get('health')
   getHealth() {
@@ -17,6 +17,6 @@ export class AppController {
       status: 'ok',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
-    };
+    }
   }
 }
